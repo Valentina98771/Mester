@@ -1,0 +1,140 @@
+{% load socialaccount %}
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Meșter</title>
+    <link rel = "shourtcut icon" href = "{% static 'images/mr.png' %}" type = "mr/png">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div id = "main">
+      <h1>Inregistreza-te</h1>
+    </div>
+
+    <div id = "header">
+      {% block content %}
+
+      <section>
+        <form action="{% url 'accounts:register' %}" method="POST" autocomplete="on">
+          {% csrf_token %}
+          
+          <div class="field">
+            <label for="{{ form.username.id_for_label }}" class="label">
+              Nume
+            </label>
+
+            <div class="control">
+              {{ form.username|add_class:"input" }}
+            </div>
+
+            <p class="help is-danger">{{ form.username.errors }}</p>
+
+          </div>
+      
+          <div class="field">
+            <label for="{{ form.email.id_for_label }}" class="label">
+              Email
+            </label>
+
+            <div class="control">
+              {{ form.email|add_class:"input" }}
+            </div>
+
+            <p class="help is-danger">{{ form.email.errors }}</p>
+
+          </div>
+      
+          <div class="field">
+            <label for="{{ form.password1.id_for_label }}" class="label">
+              Parola
+            </label>
+
+            <div class="control">
+              {{ form.password1|add_class:"input" }}
+            </div>
+
+            <p class="help">{{ form.password1.errors }}</p>
+
+          </div>
+          
+          <div class="field">
+            <label for="{{ form.password2.id_for_label }}" class="label">
+              Verificare parola
+            </label>
+            <div class="control">
+              {{ form.password2|add_class:"input" }}
+            </div>
+
+            <p class="help">{{ form.password2.errors }}</p>
+
+          </div>
+          
+          <div class="field">
+            <div class="control">
+              <button class="btn btn-success btn-lg">Inregistrare</button><br>
+              <hr>
+        
+
+                <p class="btn-text"><a href="{% provider_login_url 'google' %}" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">Inregistreza-te cu contul de Google </a>
+                </p>
+              <a href="{% provider_login_url 'facebook' %}" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">Inregistreza-te cu contul de Facebook </a>
+            </div>
+          </div>
+      
+
+
+          <ul>
+            <center><a href="{% url 'login' %}">Ai deja un cont? Logheaza-te</a>
+            <br>
+          </ul>
+        </form>
+      </section>
+
+      {% endblock %}
+    </div>
+  </body>
+<style>
+  #header {
+    margin-top: 5px;
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 15px;
+    background-color: rgb(14, 81, 112);
+    border-style: solid;
+    border-color: rgb(190, 222, 236);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+    width: auto;
+    height: auto;
+   
+}
+
+#main {
+    margin-top: 1px;
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 15px;
+    border-style: solid;
+    border-color: rgb(15, 171, 243);
+    text-align: center;
+    background-color: rgb(104, 124, 238);
+}
+
+body {
+    background-color: burlywood;
+}
+a {
+  background-color: aquamarine;
+}
+
+</style>
+</html>
