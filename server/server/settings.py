@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import psycopg2
+
 import os
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
