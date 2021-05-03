@@ -2,17 +2,17 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import SignUpForm
-
+from .forms import UserForm
+from django.http import HttpResponseRedirect
 
 def register(response):
+    form = UserForm(response.POST or None)
     if response.method == "POST":
-        form = SignUpForm(response.POST)
         if form.is_valid():
             form.save()
             return redirect("/")
     else:
-        form = SignUpForm()
+        form = UserForm()
 
     return render(response, "registration/register.html", {"form" : form})
 
@@ -44,3 +44,4 @@ def password_reset_request(request):
             messages.error(request, 'An invalid email has been entered.')
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="registration/password_reset.html", context={"password_reset_form":password_reset_form})
+
