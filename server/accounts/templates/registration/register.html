@@ -6,7 +6,7 @@
   <head>
     <title>Meșter</title>
     <link rel = "shourtcut icon" href = "{% static 'images/mr.png' %}" type = "mr/png">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -20,118 +20,132 @@
     </div>
 
     <div id = "header">
-      {% block content %}
-
-      <section>
-        <form action="{% url 'accounts:register' %}" method="POST" autocomplete="on">
+      <section>          
+        <form action="{% url 'accounts:registerUser' %}" method="POST">
           {% csrf_token %}
-          
+    
           <div class="field">
-            <label for="{{ form.username.id_for_label }}" class="label">
-              Nume
+            <label for="{{ form.StatusUser.id_for_label }}" class = "label">
+
+              Status
+              <br>
+              <input name="StatusUser" value = 'Client' type="radio"> Client |
+              <input name="StatusUser" value = 'Mester' type="radio">  Mester
+
             </label>
 
             <div class="control">
-              {{ form.username|add_class:"input" }}
+              {{ form.StatusUser}}
             </div>
 
-            <p class="help is-danger">{{ form.username.errors }}</p>
+            <p class="help is-danger">{{ form.StatusUser.errors }}</p>
+
+          </div>
+
+              <div class="field" name= "FirstName">
+                <label for="{{ FirstName.id_for_label }}" class="label">
+
+                  Primul nume
+                  <input class="form-control valid" name="FirstName" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introduce primul tau nume'" placeholder="Introduce primul tau nume">
+
+                </label>
+    
+                <div class="control">
+                  {{ FirstName|add_class:"input" }}
+                </div>
+    
+                <p class="help is-danger">{{ FirstName.errors }}</p>
+    
+              </div>
+              <div class="field" name = "LastName">
+                <label for="{{ form.LastName.id_for_label }}" class="label">
+                  Al doilea nume
+                  <input class="form-control valid" name="LastName"  type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introduce al doilea tau nume'" placeholder="Introduce al doilea tau nume">
+
+                </label>
+    
+                <div class="control">
+                  {{ form.LastName|add_class:"input" }}
+                </div>
+    
+                <p class="help is-danger">{{ form.LastName.errors }}</p>
+    
+              </div>
+
+            <div class="field" name = "Username">
+            <label for="{{ form.Username.id_for_label }}" class="label">
+              Numele de utilizator
+              <input class="form-control valid" name="Username"  type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu numele de utilizator'" placeholder="Introdu numele de utilizator">
+
+            </label>
+
+            <div class="control">
+              {{ form.Username|add_class:"input" }}
+            </div>
+
+            <p class="help is-danger">{{ form.Username.errors }}</p>
 
           </div>
       
-          <div class="field">
-            <label for="{{ form.email.id_for_label }}" class="label">
+          <div class="field" name = "Email">
+            <label for="{{ form.Email.id_for_label }}" class="label">
               Email
+              <input class="form-control valid" name="Email"  type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu emailul tau'" placeholder="Introdu emailul tau">
+
             </label>
 
             <div class="control">
-              {{ form.email|add_class:"input" }}
+              {{ form.Email|add_class:"input" }}
             </div>
 
-            <p class="help is-danger">{{ form.email.errors }}</p>
+            <p class="help is-danger">{{ form.Email.errors }}</p>
 
           </div>
       
-          <div class="field">
-            <label for="{{ form.password1.id_for_label }}" class="label">
+          <div class="field" name = "Password">
+            <label for="{{ form.Password.id_for_label }}" class="label">
               Parola
+              <input class="form-control valid" name="Password"  type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu parola ta'" placeholder="Introdu parola ta">
+
             </label>
 
             <div class="control">
-              {{ form.password1|add_class:"input" }}
+              {{ form.Password|add_class:"input" }}
             </div>
 
-            <p class="help">{{ form.password1.errors }}</p>
+            <p class="help">{{ form.Password.errors }}</p>
 
           </div>
           
-          <div class="field">
-            <label for="{{ form.password2.id_for_label }}" class="label">
+          <div class="field" name = "Password1">
+            <label for="{{ form.Password1.id_for_label }}" class="label">
               Verificare parola
+              <input class="form-control valid" name="Password1"  type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu parola ta'" placeholder="Introdu parola ta">
+
             </label>
             <div class="control">
-              {{ form.password2|add_class:"input" }}
+              {{ form.Password1|add_class:"input" }}
             </div>
 
-            <p class="help">{{ form.password2.errors }}</p>
+            <p class="help">{{ form.Password1.errors }}</p>
 
           </div>
-          
-          <div class="field">
-            <div class="control">
-              <button class="btn btn-success btn-lg">Inregistrare</button><br>
-              <hr>
+       
         
-
-                <p class="btn-text"><a href="{% provider_login_url 'google' %}" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">Inregistreza-te cu contul de Google </a>
-                </p>
-              <a href="{% provider_login_url 'facebook' %}" class="btn btn-secondary btn-lg btn-block" role="button" aria-pressed="true">Inregistreza-te cu contul de Facebook </a>
+            <div class="field">
+              <div class="control">
+                <button class="btn btn-success btn-lg">Inregistrare</button><br>
+                <hr>
+                <h2>SAU</h2>
+                <a href="{% provider_login_url 'google' %}" role="button" class="btn btn-warning" aria-pressed="true">Inregistreza-te cu contul de Google </a>
+                  <br>
+                <a href="{% provider_login_url 'facebook' %}" role="button" class="btn btn-warning" aria-pressed="true">Inregistreza-te cu contul de Facebook </a>
+              </div>
             </div>
-          </div>
-      
-          <ul>
-            <center><a href="{% url 'login' %}">Ai deja un cont? Logheaza-te</a>
-            <br>
-          </ul>
+        
+           <a href = "{% url 'login' %}" class="btn btn-success" type = "button">Ai deja un cont? Logheaza-te</a>
         </form>
       </section>
-      {% endblock %}
     </div>
   </body>
-<style>
-  #header {
-    margin-top: 5px;
-    padding: 1px;
-    padding-left: 5px;
-    padding-right: 15px;
-    background-color: rgb(14, 81, 112);
-    border-style: solid;
-    border-color: rgb(190, 222, 236);
-    border-radius: 10px;
-    text-align: center;
-    font-size: 30px;
-    width: auto;
-    height: auto;
-   
-}
-
-#main {
-    margin-top: 1px;
-    padding: 1px;
-    padding-left: 5px;
-    padding-right: 15px;
-    border-style: solid;
-    border-color: rgb(15, 171, 243);
-    text-align: center;
-    background-color: rgb(104, 124, 238);
-}
-
-body {
-    background-color: burlywood;
-}
-a {
-  background-color: aquamarine;
-}
-
-</style>
 </html>
