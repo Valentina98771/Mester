@@ -1,7 +1,4 @@
 from pathlib import Path
-
-import psycopg2
-
 import os
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
@@ -15,6 +12,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'profiles.apps.ProfilesConfig',
     'posts.apps.PostsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +51,8 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
                 os.path.join(BASE_DIR, 'posts', 'templates', 'posts'),
                 os.path.join(BASE_DIR, 'accounts', 'templates', 'accounts'),
+                os.path.join(BASE_DIR, 'profiles', 'templates', 'profiles'),
+
 
         ],
         'APP_DIRS': True,
@@ -76,7 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '123456',
+        'PASSWORD': 'valentina98',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
@@ -152,9 +152,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = ( 
-    os.path.join(BASE_DIR,'static'),
-)
+STATIC_ROOT = os.path.join(BASE_DIR,'/static/')
+
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
