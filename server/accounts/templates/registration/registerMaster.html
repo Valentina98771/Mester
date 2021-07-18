@@ -21,11 +21,11 @@
 
     <div id = "header">
       <a href="{% url 'accounts:registerUser' %}"><button type="button" class="btn btn-primary btn-lg">Client</button> </a>
-     <a href = "{% url 'accounts:registerMaster' %}"> <button type="button" class="btn btn-secondary btn-lg">Mester</button> </a>
+      <a href = "{% url 'accounts:registerMaster' %}"> <button type="button" class="btn btn-secondary btn-lg">Mester</button> </a>
       <section>          
-        <form action="{% url 'accounts:registerUser' %}" method="POST">
+        <form action="{% url 'accounts:registerMaster' %}" method="POST">
           {% csrf_token %}
-            <p>Ai ales sa fii Client, splendida alegere!</p>
+          <p>Ai ales sa fii Mester, buna alegere!</p>
               <div class="field" name= "FirstName">
                 <label for="{{ FirstName.id_for_label }}" class="label">
 
@@ -121,7 +121,7 @@
                 <button class="btn btn-success btn-lg">Inregistrare</button><br>
                 <hr>
                 <h2>SAU</h2>
-                <a href="{% provider_login_url 'google' %}" name= 'statususer' value = 'Client' role="button" class="btn btn-warning" aria-pressed="true">Inregistreza-te cu contul de Google </a>
+                <a href="{% provider_login_url 'google' %}" role="button" class="btn btn-warning" name = 'statususer' value = 'Mester' aria-pressed="true">Inregistreza-te cu contul de Google </a>
                   <br>
                 <a href="{% provider_login_url 'facebook' %}" role="button" class="btn btn-warning" aria-pressed="true">Inregistreza-te cu contul de Facebook </a>
               </div>
