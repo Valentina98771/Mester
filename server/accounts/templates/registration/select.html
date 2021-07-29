@@ -1,0 +1,30 @@
+{% load socialaccount %}
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Meșter</title>
+        <meta charset="utf-8">
+        <link rel = "shourtcut icon" href = "{% static 'images/mr.png' %}" type = "mr/png">
+        <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+
+    <body>
+
+        <div class="form-group input-group">
+            <select class="form-control" name = "status">
+                <option selected="">Din ce categorie doresti sa faci parte:</option>
+                <option value = "Mester">Mester</option>
+                <option value = "Client">Client</option>
+            </select>
+
+            <a class="btn btn-primary" href="{% url 'index' %}" type = "submit">Trimite</a>
+        </div>
+
+    </body>
+</html>
+
+

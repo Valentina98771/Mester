@@ -1,6 +1,5 @@
-{% load socialaccount %}
-{% load widget_tweaks %}
 {% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,41 +9,38 @@
         <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
 
     <body>
-       <div id = "main">
+        <div id = "main">
             {% if user.is_authenticated %}
-                <h2>Mesterul</h2>
-                    <nav class="navbar navbar-inverse">
-                        <div class="container-fluid">  
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setari cont<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="{% url 'logout' %}">Deconectare</a></li>
-                                            <li><a href="{% url 'password_reset' %}">Reseteaza parola</a></li>
-                                        </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">  
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setari cont<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'logout' %}">Deconectare</a></li>
+                                    <li><a href="{% url 'password_reset' %}">Reseteaza parola</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
             {% else %}
-                <h2>Mesterul</h2>
-                    <nav class="navbar navbar-inverse">
-                        <div class="container-fluid">
-                            <ul class="nav navbar-nav">
-                                <li><a href="{% url 'login' %}">Logheaza-te</a></li>
-                                <li><a href="{% url 'accounts:registerUser' %}">Inregistreza-te</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-            {% endif %}
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                            <li><a href="{% url 'login' %}">Logheaza-te</a></li>
+                            <li><a href="{% url 'accounts:registerUser' %}">Inregistreza-te</a></li>
+                        </ul>
+                    </div>
+                </nav>
+             {% endif %}
         </div>
-    
+     
     </body>
+    
 </html>
 
 

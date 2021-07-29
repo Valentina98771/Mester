@@ -1,6 +1,6 @@
-{% load socialaccount %}
-{% load widget_tweaks %}
 {% load static %}
+{% load widget_tweaks %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,127 +9,214 @@
     <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </head>
 
   <body>
-    <div id = "main">
-      <h1>Inregistreza-te</h1>
-    </div>
+    <div class="container">
+      <div class="d-flex justify-content-center h-100">
+        <div class="card">
+          <form action="{% url 'accounts:registerUser' %}" method="POST">
+            {% csrf_token %}
+           
+            <div class="d-flex justify-content-end social_icon">
+              <i class="fab fa-facebook-f"></i><a href="{% provider_login_url 'google' %}?next=/select"><span><i class="fab fa-facebook-square"></i></span></a>
+              <span><i class="fab fa-google-plus-square"></i></span>
+            </div>
 
-    <div id = "header">
-      <a href="{% url 'accounts:registerUser' %}"><button type="button" class="btn btn-primary btn-lg">Client</button> </a>
-     <a href = "{% url 'accounts:registerMaster' %}"> <button type="button" class="btn btn-secondary btn-lg">Mester</button> </a>
-      <section>          
-        <form action="{% url 'accounts:registerUser' %}" method="POST">
-          {% csrf_token %}
-            <p>Ai ales sa fii Client, splendida alegere!</p>
-              <div class="field" name= "FirstName">
-                <label for="{{ FirstName.id_for_label }}" class="label">
-
-                  Primul nume
-                  <input class="form-control valid" name="FirstName" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introduce primul tau nume'" placeholder="Introduce primul tau nume">
-
-                </label>
-    
-                <div class="control">
-                  {{ FirstName|add_class:"input" }}
+            <div class="card-body">
+              <div class="field">
+                <label  class="card-header"><h3>Primul nume</h3></label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="first_name" placeholder="Primul nume" />
                 </div>
-    
-                <p class="help is-danger">{{ FirstName.errors }}</p>
-    
+                <p class="help is-danger">{{ form.first_name.errors }}</p>
               </div>
-              <div class="field" name = "LastName">
-                <label for="{{ form.LastName.id_for_label }}" class="label">
-                  Al doilea nume
-                  <input class="form-control valid" name="LastName"  type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introduce al doilea tau nume'" placeholder="Introduce al doilea tau nume">
 
-                </label>
-    
-                <div class="control">
-                  {{ form.LastName|add_class:"input" }}
+              <div class="form-group input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-building"></i> </span>
                 </div>
-    
-                <p class="help is-danger">{{ form.LastName.errors }}</p>
-    
+                <select class="form-control" name = "status">
+                  <option selected="">Din ce categorie doresti sa faci parte:</option>
+                  <option value = "Mester">Mester</option>
+                  <option value = "Client">Client</option>
+                </select>
               </div>
 
-            <div class="field" name = "Username">
-            <label for="{{ form.Username.id_for_label }}" class="label">
-              Numele de utilizator
-              <input class="form-control valid" name="Username"  type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu numele de utilizator'" placeholder="Introdu numele de utilizator">
-
-            </label>
-
-            <div class="control">
-              {{ form.Username|add_class:"input" }}
-            </div>
-
-            <p class="help is-danger">{{ form.Username.errors }}</p>
-
-          </div>
-      
-          <div class="field" name = "Email">
-            <label for="{{ form.Email.id_for_label }}" class="label">
-              Email
-              <input class="form-control valid" name="Email"  type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu emailul tau'" placeholder="Introdu emailul tau">
-
-            </label>
-
-            <div class="control">
-              {{ form.Email|add_class:"input" }}
-            </div>
-
-            <p class="help is-danger">{{ form.Email.errors }}</p>
-
-          </div>
-      
-          <div class="field" name = "Password">
-            <label for="{{ form.Password.id_for_label }}" class="label">
-              Parola
-              <input class="form-control valid" name="Password"  type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu parola ta'" placeholder="Introdu parola ta">
-
-            </label>
-
-            <div class="control">
-              {{ form.Password|add_class:"input" }}
-            </div>
-
-            <p class="help">{{ form.Password.errors }}</p>
-
-          </div>
-          
-          <div class="field" name = "Password1">
-            <label for="{{ form.Password1.id_for_label }}" class="label">
-              Verificare parola
-              <input class="form-control valid" name="Password1"  type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Introdu parola ta'" placeholder="Introdu parola ta">
-
-            </label>
-            <div class="control">
-              {{ form.Password1|add_class:"input" }}
-            </div>
-
-            <p class="help">{{ form.Password1.errors }}</p>
-
-          </div>
-       
-        
-            <div class="field">
-              <div class="control">
-                <button class="btn btn-success btn-lg">Inregistrare</button><br>
-                <hr>
-                <h2>SAU</h2>
-                <a href="{% provider_login_url 'google' %}" name= 'statususer' value = 'Client' role="button" class="btn btn-warning" aria-pressed="true">Inregistreza-te cu contul de Google </a>
-                  <br>
-                <a href="{% provider_login_url 'facebook' %}" role="button" class="btn btn-warning" aria-pressed="true">Inregistreza-te cu contul de Facebook </a>
+              <div class="field">
+                <label  class="card-header"><h3>Al doilea nume</h3></label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="last_name" id="name" placeholder="Al doilea nume" />
+                </div>
               </div>
+
+
+              <div class="field">
+                <label  class="card-header"><h3>Email</h3></label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label  class="card-header"><h3>Nume de utilizator</h3></label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="username" id="Username" placeholder="Nume de utilizator" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="card-header"><h3>Parola</h3></label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Parola" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="card-header"><h3>Repeta parola</h3></label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                  <input type="password" class="form-control" name="password" id="confirm" placeholder="Repeta parola" />
+                </div>
+              </div>
+
+              </br>
+
+              <div class="control-group">
+                <div class="d-flex justify-content-center links">
+                  <button class = "btn float-right login_btn" type = "submit"><i class="fas fa-user-plus"></i>  Inregistreaza-te</button>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="control-group">
+                <div class="d-flex justify-content-center links">
+                  <a href="{% url 'login' %}" class = "btn btn-primary btn-block" type = "button"><i class="fas fa-sign-in-alt"></i>  Logheaza-te</a>
+                </div>
+              </div>
+
+              </br>
+              
+              <div class="control-group">
+                <div class="d-flex justify-content-center links">
+                  <a href="{% url 'password_reset' %}" class = "btn btn-primary btn-block" type = "button"><i class="fas fa-unlock"></i>  Parola uitata</a>
+                </div>
+              </div>
+              
             </div>
-        
-           <a href = "{% url 'login' %}" class="btn btn-success" type = "button">Ai deja un cont? Logheaza-te</a>
-        </form>
-      </section>
+          </form>
+        </div>
+      </div>
     </div>
+    
+    <style>
+
+      @import url('https://fonts.googleapis.com/css?family=Numans');
+      
+      html,body{
+      background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100%;
+      font-family: 'Numans', sans-serif;
+      }
+      
+      .container{
+      height: 100%;
+      align-content: center;
+      }
+      
+      .card{
+      height: max-content;
+      margin-top: auto;
+      margin-bottom: auto;
+      width: 400px;
+      background-color: rgba(0,0,0,0.5) !important;
+      }
+      
+      .social_icon span{
+      font-size: 60px;
+      margin-left: 10px;
+      color: #FFC312;
+      }
+      
+      .social_icon span:hover{
+      color: white;
+      cursor: pointer;
+      }
+      
+      .card-header h3{
+      color: white;
+      }
+      
+      .social_icon{
+      position: absolute;
+      right: 20px;
+      top: -45px;
+      }
+      
+      .input-group-prepend span{
+      width: 40px;
+      background-color: #FFC312;
+      color: black;
+      border:0 !important;
+      }
+      
+      input:focus{
+      outline: 0 0 0 0  !important;
+      box-shadow: 0 0 0 0 !important;
+      
+      }
+      
+      .remember{
+      color: white;
+      }
+      
+      .remember input
+      {
+      width: 20px;
+      height: 20px;
+      margin-left: 15px;
+      margin-right: 5px;
+      }
+      
+      .login_btn{
+      color: black;
+      background-color: #FFC312;
+      width: max-content;
+      }
+      .login_btn1{
+      color: black;
+      background-color: #12d40c;
+      width: max-content;
+      }
+      
+      .login_btn:hover{
+      color: black;
+      background-color: white;
+      }
+      
+      .links{
+      color: white;
+      }
+      
+      .links a{
+      margin-left: 4px;
+      }
+      </style>
+      
+
   </body>
 </html>
