@@ -1,0 +1,224 @@
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Meșter</title>
+    <meta charset="utf-8">
+       
+    <link rel = "shourtcut icon" href = "{% static 'images/mr.png' %}" type = "mr/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+  </head>
+
+  <body>
+
+    <nav class="d-flex align-items-start">
+      <ul class="nav nav-pills mb-3">
+        <li style="padding-left:1em"><a href="{% url 'profileClient:userEdit' %}">Despre mine<br/></a></li>
+        <li style="padding-left:1em"><a href="{% url 'accounts:registerUser' %}">Postari</a></li>
+        <li style="padding-left:1em"> <a href="{% url 'login' %}">Poze</a></li>
+        <li style="padding-left:1em"><a href="{% url 'accounts:registerUser' %}">Mesteri</a></li>
+
+      </ul>
+    </nav>
+  
+
+    <div class="d-flex align-content-center flex-wrap">
+      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="btn btn-warning" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false">Nume</button>
+        <button class="btn btn-warning" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Setari cont</button>
+      </div>
+
+      <div class="tab-content" id="v-pills-tabContent">
+
+        <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <form method = "POST" >
+            {% csrf_token %}
+            <div class = "card-body">
+              <div class="field">
+                <label for="username">Nume de utilizator</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="username" name="username" class = "form-control" {{ form.username }}>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="first_name">Primul nume</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="first_name" name="first_name" class = "form-control" {{ form.first_name }}>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="field">
+                <label  for="last_name">Al doilea nume</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="last_name" name="last_name" class = "form-control" {{form.last_name}}>
+                  </div>
+                </div>
+              </div>
+  
+              <button class = "btn btn-secondary">Editare profil</button>
+     
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+          <form method = "POST" action = "{% url 'profileClient:userEdit' %}">
+            {% csrf_token %}
+            <div class = "card-body">
+              <label for="birthday"> Introdu ziua ta de nastere: </label>
+              <input type = "date" name="birthday" id = "birthday" class = "form-control" {{ form.birthday }}>
+
+              <div class="field">
+                <label  for="email">Email</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="email" name="email" class = "form-control" {{form.email}}>
+                  </div>
+                </div>
+              </div>
+
+              <button class = "btn btn-secondary">Editare profil</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+<style>
+.btn {
+  margin-top: 30px;
+  margin-left: 10px;
+}
+.align-items-start {
+  background-color: aqua;
+  margin-top: 10px;
+  border-radius: 10px;
+
+  
+}
+img {
+  width: 100px;
+}
+.tab-content>.tab-pane {
+  margin-left: 150px;
+  color: #000;
+}
+.align-content-center {
+  background-color: rgb(67, 83, 83);
+}
+  body {
+    font-size: large;
+  }
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body {
+  background-color: rgba(10, 15, 29, 0.973);
+  height: 100%;
+  font-family: 'Numans', sans-serif;
+}
+.container {
+  height: 100%;
+  align-content: center;
+}
+
+.card {
+  height: max-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 500px;
+  background-color: rgba(0,0,0,0.5) !important;
+}
+
+.social_icon span {
+  font-size: 60px;
+  margin-left: 10px;
+  color: #FFC312;
+}
+
+.social_icon span:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.card-header h3 {
+  color: white;
+}
+
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span {
+  width: 25px;
+  background-color: #FFC312;
+  color: black;
+  border:0 !important;
+}
+
+input:focus {
+  outline: 0 0 0 0  !important;
+  box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember {
+  color: white;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.login_btn {
+  color: black;
+  background-color: #FFC312;
+  width: max-content;
+}
+.login_btn1 {
+  color: black;
+  background-color: #12d40c;
+  width: max-content;
+}
+
+.login_btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.links {
+  color: white;
+}
+
+.links a {
+  margin-left: 4px;
+}
+
+</style>
+</html>
+{% endblock %}
+
+
