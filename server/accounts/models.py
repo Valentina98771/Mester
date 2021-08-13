@@ -7,3 +7,11 @@ from django.contrib.auth.models import AbstractUser, User
 
 class User(AbstractUser):
     status = models.CharField(max_length=100)
+    birthday = models.DateField(auto_now=False, null=True, blank=True)
+    avatar = models.ImageField(null = True, blank = True)
+
+
+
+
+
+    
