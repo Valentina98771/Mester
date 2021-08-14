@@ -7,6 +7,8 @@
         <title>Meșter</title>
         <meta charset="utf-8">
         <link rel = "shourtcut icon" href = "{% static 'images/mr.png' %}" type = "mr/png">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -18,10 +20,11 @@
 
     <body>
 
-        <form method = "POST" action = "{% url 'profileClient:userEdit' %}">
+        <form method = "POST" action = "{% url 'profileClient:user' %}">
             {% csrf_token %}
-            <img src = "{{user.profile.avatar.url}}" alt="Avatar" class="rounded-circle" name= "avatar">
+            <img src = "{{ request.user.profile.avatar.url }}" alt="Poza de profil" class="avatar">
             {{user.first_name}} {{user.last_name}}
+
         </form>
 
         <nav class="navbar navbar-inverse">
@@ -34,7 +37,7 @@
                             <li><a href="{% url 'password_reset' %}">Reseteaza parola</a></li>
                         </ul>
                     </li>
-                    <li><a href="{% url 'profileClient:userEdit' %}">Editare profil</a></li>
+                    <li><a href="{% url 'profileClient:user' %}">Editare profil</a></li>
                 </ul>
             </div>
         </nav>
