@@ -6,7 +6,7 @@
         <title>Meșter</title>
         <meta charset="utf-8">
         <link rel = "shourtcut icon" href = "{% static 'images/mr.png' %}" type = "mr/png">
-        <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -29,7 +29,7 @@
                                     <li><a href="{% url 'password_reset' %}">Reseteaza parola</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{% url 'profileClient:userEdit' %}">Editare profil</a></li>
+                            <li><a href="{% url 'profileClient:user' %}">Editare profil</a></li>
 
                         </ul>
                     </div>
