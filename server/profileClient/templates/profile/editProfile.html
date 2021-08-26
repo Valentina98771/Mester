@@ -1,0 +1,143 @@
+{% include 'index.html'%}
+
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Meșter</title>
+    <meta charset="utf-8">
+    <link rel = "shourtcut icon" src = "profileClient/images/mr.png" type = "image/png">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="d-flex align-content-center flex-wrap" id = "border">
+      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <button class="btn btn-warning" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false">Nume</button>
+        <button class="btn btn-warning" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Setari cont</button>
+      </div>
+
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <form method = "POST" action = "{% url 'profileClient:user' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class = "card-body">
+              <div class="field">
+                <label for="username">Nume de utilizator</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="username" name="username" class = "form-control" {{ user_form.username }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="first_name">Primul nume</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="first_name" name="first_name" class = "form-control" {{ user_form.first_name }}
+                  </div>
+                </div>
+              </div>
+    
+              <div class="field">
+                <label  for="last_name">Al doilea nume</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="last_name" name="last_name" class = "form-control" {{user_form.last_name}}
+                  </div>
+                </div>
+              </div>
+  
+              <button class = "btn btn-secondary">Editare profil</button>
+     
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+          <form method = "POST" action = "{% url 'profileClient:user' %}">
+            {% csrf_token %}
+
+            <div class = "card-body">
+              <label for="birthday"> Introdu ziua ta de nastere: </label>
+              <input type = "date" name="birthday" id = "birthday" class = "form-control" {{ profile_form.birthday }}
+
+              <div class="field">
+                <label  for="email">Email</label>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" id="email" name="email" class = "form-control" {{user_form.email}}
+                  </div>
+                </div>
+              </div>
+
+              <button class = "btn btn-secondary">Editare profil</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+<style>
+
+    h4 {
+        color: rgb(0, 255, 55);
+    }
+    .text-center {
+        background-color: rgb(53, 59, 59);
+    }
+    h3 {
+        color: #000;
+    }
+
+    h4 {
+        color: rgb(0, 255, 55);
+    }
+    .text-center {
+        background-color: rgb(255, 255, 255);
+    }
+    h3 {
+        color: #000;
+    }
+    body {
+    font-size: large;
+    background-color: rgb(228, 245, 239)
+}
+.navbar-inverse {
+    background-color: rgb(255, 255, 255);
+    color: rgb(158, 20, 20);
+}
+
+#border {
+    border: 3px solid rgb(214, 233, 233);
+    background-color: rgb(255, 255, 255);
+    padding-bottom: 30px;
+    width: auto;
+    text-align: center;
+}
+
+img {
+    width: 100px;
+    border-radius: 50%;
+    border: 3px solid rgb(214, 233, 233);
+}
+</style>
+</html>
+
+
