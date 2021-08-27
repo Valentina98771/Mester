@@ -13,8 +13,9 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('profileClient/', include('django.contrib.auth.urls')),
     path('profileClient/', include('profileClient.urls')),
-    path('profile/', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('profileClient/', TemplateView.as_view(template_name='index.html'), name='about'),
+    path('posts/', include('posts.urls')),
+    path('posts/', include('django.contrib.auth.urls')),
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

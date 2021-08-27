@@ -13,6 +13,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
+    'posts.apps.PostsConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -27,8 +28,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    'profileClient.apps.ProfileclientConfig'
+    'profileClient.apps.ProfileclientConfig',
+    'crispy_forms',
+    
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,9 +51,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
-                os.path.join(BASE_DIR, 'templates', 'allauth'),
+                os.path.join(BASE_DIR, 'templates', 'allauth', 'static'),
                 os.path.join(BASE_DIR, 'accounts', 'templates', 'accounts'),
                 os.path.join(BASE_DIR, 'profileClient', 'templates', 'profileClient'),
+                os.path.join(BASE_DIR, 'posts', 'templates', 'posts'),
+
 ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -131,6 +137,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'email',
             
         ],
+     
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
@@ -149,19 +156,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/images/'
+
 
 STATIC_ROOT = os.path.join(BASE_DIR,'/static/')
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'about'
 LOGOUT_REDIRECT_URL = 'index' 
-
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -172,8 +179,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'rTJV5c-9ulfFBDfwKGxOcgJF'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '313689557037437'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET ='15e4a8992f8403d7f61758fd540e0ef2' #app key
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index' 
+
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
