@@ -11,4 +11,4 @@ class EditUserForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['birthday', 'avatar']
+        fields = '__all__'

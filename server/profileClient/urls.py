@@ -10,6 +10,5 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name='profile/about.html'), name='about'),
     path('craftsmen/', TemplateView.as_view(template_name='profile/craftsmen.html'), name='craftsmen'),
     path('photo/', TemplateView.as_view(template_name='profile/photo.html'), name='photo'),
-    path('posts/', TemplateView.as_view(template_name='profile/posts.html'), name='posts'),
 
 ]
