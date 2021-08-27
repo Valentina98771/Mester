@@ -1,0 +1,14 @@
+{% include 'index.html' %}
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <form method = "POST" >
+        {% csrf_token %}
+        <strong> Esti sigur ca doresti sa stergi postarea? </strong>
+        <br>
+        <button class = "btn btn-secondary"> Sterge postarea </button>
+      </form>
+  </body>
+
+</html>

@@ -1,0 +1,15 @@
+{% include 'index.html' %}
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <form method = "POST" >
+        {% csrf_token %}
+        <textarea  name = "body" id = "body" placeholder = "Scrie o postare" style = "resize:none" cols = "100" rows = "5"> {{ post.body }} </textarea>
+        <br>
+        <button class = "btn btn-secondary"> Editeaza postarea </button>
+    </form>
+  </body>
+</html>
+
+
