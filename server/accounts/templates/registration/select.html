@@ -17,16 +17,16 @@
             {% csrf_token %}
             Hello {{ user.status }}!
             {{user.status}}
-            <div class="form-group input-group">
-                <select class="form-control" name = "status">
-                    <option selected="">Din ce categorie doresti sa faci parte:</option>
-                    <option value = "Mester" name = "status">Mester</option>
-                    <option value = "Client" name = "status">Client</option>
+            <div class = "form-group input-group">
+                <select class = "form-control" name = "status">
+                    <option selected=""> Din ce categorie doresti sa faci parte: </option>
+                    <option value = "Mester" name = "status" >Mester </option>
+                    <option value = "Client" name = "status"> Client </option>
                 </select>
 
-                <div class="control-group">
-                    <div class="d-flex justify-content-center links">
-                      <button class = "btn float-right login_btn" type = "submit"><i class="fas fa-user-plus"></i>  Inregistreaza-te</button>
+                <div class = "control-group">
+                    <div class = "d-flex justify-content-center links">
+                      <button class = "btn float-right login_btn" type = "submit"><i class = "fas fa-user-plus"></i> Inregistreaza-te </button>
                     </div>
                 </div>            
             </div>

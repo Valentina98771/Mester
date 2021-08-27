@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from .models import User
-from django.db import models
-from django.contrib import messages
 
 def RegisterUser(request):
     if request.method == "POST":
@@ -13,8 +11,7 @@ def RegisterUser(request):
         Password2= request.POST.get("password1", "default value")
         status = request.POST.get("status", 'default value')
         birthday = request.POST.GET("birthday", "default value")
-
-        user = User(first_name = first_name, last_name = LastName, username = Username, email = Email, status = status, birthday = birthday)
+        user = User(first_name = first_name, last_name = LastName, username = Username, email = Email, status = status, birthday =  birthday)
         user.set_password(Password1)
         user.save()
         return render(request, "registration/index.html")
