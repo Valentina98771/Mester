@@ -3,12 +3,22 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <form method = "POST" >
+    <div class="modal modal-alert position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalChoice">
+      <form method = "POST" >
         {% csrf_token %}
-        <strong> Esti sigur ca doresti sa stergi postarea? </strong>
-        <br>
-        <button class = "btn btn-secondary"> Sterge postarea </button>
+        <div class="modal-dialog" role="document">
+          <div class="modal-content rounded-4 shadow">
+            <div class="modal-body p-4 text-center">
+              <h5 class="mb-0"> Esti sigur ca doresti sa stergi? </h5>
+              <p class="mb-0">Poti sa te razgandesti, dar odata stearsa postarea nu o mai poti recupera.</p>
+            </div>
+            <div class="modal-footer flex-nowrap p-0">
+              <button class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-right"><strong>Da, sunt sigur!</strong></button>
+              <a href = "{% url 'list' %}" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">M-am razgandit!</a>
+            </div>
+          </div>
+        </div>
       </form>
+    </div>
   </body>
-
 </html>

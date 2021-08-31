@@ -15,8 +15,8 @@
     
         <div id = "header">
             {{ user.username }} | {{ post.updated_on }} 
-            <a href = "{% url 'posts:edit' post.pk  %}"><i class="fas fa-edit"></i></a> | 
-            <a href = "{% url 'posts:delete' post.pk  %}"><i class="las la-trash"></i></a>
+            <a href = "{% url 'edit' post.pk  %}"><i class="fas fa-edit"></i></a> | 
+            <a href = "{% url 'delete' post.pk  %}"><i class="las la-trash"></i></a>
             <hr>
             {{ post.body }}
         </div>

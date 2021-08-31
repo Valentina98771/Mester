@@ -15,5 +15,5 @@ class Post(models.Model):
         return str(self.user)
     
     def get_absolute_url(self):
-        return reverse('posts:list')
+        return reverse('list')
 
