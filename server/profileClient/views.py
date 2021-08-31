@@ -11,7 +11,7 @@ def UserEdit(request):
 		    user_form.save()
 		elif profile_form.is_valid():
 		    profile_form.save()
-		return redirect ("profileClient:index")
+		return redirect ("about")
 	user_form = EditUserForm(instance=request.user)
 	profile_form = EditProfileForm(instance=request.user)
 	return render(request = request, template_name ="profile/editProfile.html", context = {"user":request.user, 

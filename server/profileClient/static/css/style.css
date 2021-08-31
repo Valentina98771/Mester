@@ -24,7 +24,7 @@ img {
 @import url('https://fonts.googleapis.com/css?family=Numans');
   
 html {
-    background-color: aquamarine;
+    background-color: rgb(228, 245, 239);
     height: 100%;
     font-family: 'Numans', sans-serif;
 }
