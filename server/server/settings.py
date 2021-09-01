@@ -14,6 +14,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
+    'chat.apps.ChatConfig',
+    'clientProfile.apps.ClientprofileConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -28,7 +30,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    'profileClient.apps.ProfileclientConfig',
     'crispy_forms',
     
 ]
@@ -53,8 +54,9 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
                 os.path.join(BASE_DIR, 'templates', 'allauth', 'static'),
                 os.path.join(BASE_DIR, 'accounts', 'templates', 'accounts'),
-                os.path.join(BASE_DIR, 'profileClient', 'templates', 'profileClient'),
+                os.path.join(BASE_DIR, 'clientProfile', 'templates', 'clientProfile'),
                 os.path.join(BASE_DIR, 'posts', 'templates', 'posts'),
+                os.path.join(BASE_DIR, 'chat', 'templates', 'chat'),
 
 ],
         'APP_DIRS': True,
