@@ -1,0 +1,72 @@
+{% include 'index.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+<html>
+  <head>
+    <link rel = "stylesheet" href = "{% static 'css/bootstrap.min.css' %}">
+    <script src = "{% static 'js/bootstrap.js' %}"></script> 
+    <link rel = "stylesheet" href = "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link rel = "stylesheet" href = "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+  </head>
+    <body>
+        <form method = "POST" action = "{% url 'postare' %}">
+            {% csrf_token %}
+            <div class="textarea-container">
+                <textarea class = "form-control" name = "body" id = "body" placeholder = "Scrie o postare" style = "resize:none" cols = "100" rows = "5"></textarea>
+                <button class = "btn btn-secondary" type = "submit"> Creeaza o postare </button>
+            </div>
+        </form>
+        <form method = "POST" action = "{% url 'list' %}">
+          {% csrf_token %}
+                  <div class="list-group list-group-checkable">
+              <label class="list-group-item py-3" for="listGroupCheckableRadios1">
+                  {% for post in object_list %}
+                      <a href="{% url 'detail' post.pk  %}"> 
+                      {{ user.username }} </a> | {{ post.updated_on }}
+                      <br>
+                       {{ post.body }} 
+  
+                      <a href = "{% url 'edit' post.pk  %}"><i class="fas fa-pencil-alt prefix"></i></a>
+                      <a href = "{% url 'delete' post.pk  %}"><i class="las la-trash"></i></a>      
+                      <hr>
+                  {% endfor %}
+              </label>
+          </div>
+        </form>
+    </body>
+
+</html>
+
+<style>
+.form-control {
+    width: 50%;
+    margin-top: 10px;
+    margin-left: 25%;
+    display: flex;
+    align-items: center;
+}
+textarea {
+    display: block;
+    align-items: center;
+}
+.textarea-container {
+  position: relative;
+}
+.textarea-container textarea {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.textarea-container button {
+  position: absolute;
+top: 90%;
+right: 25%;
+  align-items: center;
+
+}
+
+html {
+    background-color: rgb(228, 245, 239);
+}
+</style>
