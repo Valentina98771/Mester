@@ -1,17 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from .models import Register
+from .models import Profile
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
-class UserForm(forms.ModelForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email =  forms.EmailField()
-    username = forms.CharField()
-    status = forms.CharField(widget=forms.Select(choices = Register.STATUS_CHOICES))
-    password = forms.CharField(widget = forms.PasswordInput())
-    password1 = forms.CharField(widget = forms.PasswordInput())
-
+class EditUserForm(forms.ModelForm):
     class Meta:
-        model = Register
-        fields = ["first_name", "last_name", "email", "username", "status", "password", "password1",]
+        model = User
+        fields = ('username','first_name', 'last_name', 'email')
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'

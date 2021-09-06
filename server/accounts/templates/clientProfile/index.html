@@ -1,0 +1,163 @@
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load inbox %}
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Meșterii </title>
+    <meta charset = "utf-8">
+    <link rel = "shourtcut icon" href = "{% static 'profileClient/images/mr.png' %}" type = "mr/png">
+    <link rel = "stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <meta name = "viewport" content="width=device-width, initial-scale=1">
+    <link rel = "stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src = "{% static 'js/bootstrap.js' %}"></script> 
+  </head>
+
+  <body>
+    <form method = "POST" action = "{% url 'user' %}" enctype = "multipart/form-data">
+      {% csrf_token %}
+      <div class = "text-center">
+        <img src = "{{ user.profile.avatar.url }}" alt = "Poza de profil" class = "rounded mx-auto d-block">
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <h4>Status: {{ user.status }}</h4>
+      </div>
+    </form>
+
+    <div id = "border">
+      <div class = "btn-group">
+        <button class = "btn btn-warning dropdown-toggle" type = "button" data-toggle = "dropdown" aria-haspopup = "true" aria-expanded = "false">
+          Setari cont <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu">
+          <li><a href = "{% url 'logout' %}"> Deconectare </a></li>
+          <li><a href = "{% url 'password_reset' %}"> Reseteaza parola </a></li>
+        </div>
+        <a href = "{% url 'list' %}"><button type = "button" class = "btn btn-warning"> Acasa </button></a>
+        <a href = "{% url 'photo' %}"><button type = "button" class = "btn btn-warning"> Fotografii </button></a>
+        <a href = "{% url 'craftsmen' %}"><button type = "button" class = "btn btn-warning"> Mesterii </button></a>
+        <a href = "{% url 'despre' %}"><button type = "button" class = "btn btn-warning"> Postari </button></a>
+        <a href = "{% url 'user' %}"><button type = "button" class = "btn btn-warning"> Editare profil </button></a>
+        <a href = "{% url 'messages_redirect' %}"><button type = "button" class = "btn btn-warning"> chat </button></a>
+
+      </div>
+    </div>
+
+  </body>
+</html>
+
+<style>
+html {
+    background-color: rgb(217, 235, 229);
+}
+
+h4 {
+  color: rgb(0, 255, 55);
+}
+
+.text-center {
+  background-color: rgb(53, 59, 59);
+}
+
+h3 {
+  color: #000;
+}
+ 
+h4 {
+  color: rgb(0, 255, 55);
+
+}
+.text-center {
+  background-color: rgb(255, 255, 255);
+}
+
+body {
+  font-size: large;
+  background-color: rgb(228, 245, 239)
+}
+
+.navbar-inverse {
+  background-color: rgb(255, 255, 255);
+  color: rgb(158, 20, 20);
+ }
+ 
+ #border {
+  border: 3px solid rgb(214, 233, 233);
+  background-color: rgb(255, 255, 255);
+  padding-bottom: 30px;
+  width: auto;
+  text-align: center;
+}
+ 
+img {
+  width: 100px;
+  border-radius: 50%;
+  border: 3px solid rgb(214, 233, 233);
+}
+
+
+
+
+.messages-container {
+  height: 300px;
+  border: 1px solid #DDD;
+  position: relative;
+}
+
+.messages {
+  box-sizing: border-box;
+  padding: 20px;
+  overflow: auto;
+  height: 300px;
+}
+
+.user-list {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 498px;
+  overflow: auto;
+  background: #EFEFEF;
+  margin: 0;
+  padding: 20px;
+  border-left: 1px solid #DDD;
+}
+
+.user-list li {
+  display: block;
+  color: orange;
+  font-weight: bold;
+}
+
+.username {
+  font-weight: bold;
+  color: orange;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.add-message {
+  margin-top: 20px;
+}
+
+.away span {
+  color: #666;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.msg-read {
+  background-color: lightgray;
+}
+
+.msg-unread {
+  background-color: #aacc99;
+}
+
+</style>
