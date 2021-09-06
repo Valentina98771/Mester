@@ -1,5 +1,7 @@
 from pathlib import Path
 import os
+import socket
+socket.getaddrinfo('127.0.0.1', 8000)
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
@@ -15,7 +17,6 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
     'chat.apps.ChatConfig',
-    'clientProfile.apps.ClientprofileConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -31,6 +32,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'crispy_forms',
+    'django_private_chat',
+    'django_messages',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -54,7 +57,6 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
                 os.path.join(BASE_DIR, 'templates', 'allauth', 'static'),
                 os.path.join(BASE_DIR, 'accounts', 'templates', 'accounts'),
-                os.path.join(BASE_DIR, 'clientProfile', 'templates', 'clientProfile'),
                 os.path.join(BASE_DIR, 'posts', 'templates', 'posts'),
                 os.path.join(BASE_DIR, 'chat', 'templates', 'chat'),
 
@@ -72,6 +74,11 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django_messages.context_processors.inbox',
+)
+FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
@@ -188,3 +195,7 @@ EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
+
+CHAT_WS_SERVER_HOST = 'localhost'
+CHAT_WS_SERVER_PORT = 5002
+CHAT_WS_SERVER_PROTOCOL = 'ws'
