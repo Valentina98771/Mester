@@ -1,0 +1,67 @@
+{% include 'clientProfile/index.html' %}
+{% block body %}
+<div class="container">
+    <div class="btn-group">
+        <div class="row">
+            <div class="card" style="width: 200px;">
+                <div class = "d-flex align-content-center flex-wrap" id = "border">
+                    <div class = "nav flex-column nav-pills me-3" id = "v-pills-tab" role = "tablist" aria-orientation = "vertical">
+
+                        {% for user in users %}
+                 
+                            <a href = "{% url 'chat' request.user.id user.id %}" id="user{{ user.id}}"><button type = "button" class = "btn btn-light btn-lg btn-block"> {{ user.username }} </button></a>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card" style="width: 1000px;">        
+                <h3 style = "background-color: rgb(161, 243, 214); padding: 10px;"> Diaolog cu:
+                    {{ receiver.username }}</h3>
+
+                
+                <div id="board" class="container-fluid" style="height: 68vh; padding: 3px; overflow-y: scroll">
+                    {% block messages %}
+                   
+                    {% endblock %}
+                </div>
+                <form id="chat-box" method="post">
+                    {% csrf_token %}
+                
+                    <div class="row">
+                        <div class="col s11">
+                            <div class="input-field">
+                                <input id="id_message" name="message" type="text" placeholder="Scrie un mesaj..">
+                            </div>
+                        </div>
+                        <div class="col s1" style="line-height: 10px">
+                            <button class="btn btn-floating blue lighten-2 waves-effect waves-light"><i class="material-icons">send</i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    {% load static %}
+    <script src="{% static 'js/chat.js' %}"></script>
+    <script>
+        // For receiving
+        sender_id = "{{ receiver.id }}";
+        receiver_id = "{{ request.user.id }}";
+
+        //For sending
+        $(function () {
+            scrolltoend();
+            $('#chat-box').on('submit', function (event) {
+                event.preventDefault();
+                var message = $('#id_message');
+                send('{{ request.user.username }}', '{{ receiver.username }}', message.val());
+                message.val('');
+            })
+        })
+    </script>
+{% endblock %}
