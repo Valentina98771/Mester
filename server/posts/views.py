@@ -5,17 +5,20 @@ from django.views.generic import ListView, UpdateView, DeleteView, DetailView
 from django.shortcuts import render, redirect
 
 def CreatePost(request):
-    user = request.user
-    body = request.POST.get("body", 'default value')
-    created_on = request.POST.get("created_on", 'default value')
-    updated_on = request.POST.get("updated_on", 'default value')
-    post = Post.objects.create(user = user, body = body, created_on = created_on, updated_on = updated_on)
-    post.save()
-    return redirect('postare')
+    if request.method == "POST":
+        user = request.user
+        body = request.POST.get("body", 'default value')
+        created_on = request.POST.get("created_on", 'default value')
+        updated_on = request.POST.get("updated_on", 'default value')
+        post = Post.objects.create(user = user, body = body, created_on = created_on, updated_on = updated_on)
+        post.save()
+        return redirect('list')
+    else:
+        return render(request, "clientProfile/profile/about.html", {})
 
 class ListPost(ListView):
     model = Post
-    template_name = 'profile/about.html'
+    template_name = 'clientProfile/profile/about.html'
 
 class DetailPost(DetailView):
     model = Post
